@@ -1,0 +1,29 @@
+version: '3'
+services:
+  cache:
+    image: redis:6.2-alpine
+    restart: always
+    ports:
+      - '6379:6379'
+    volumes:
+      - cache:/data
+    networks: 
+      - redis-compose-network
+  redis-commander:
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+    - REDIS_HOSTS=local:cache:6379
+    ports:
+    - "9081:8081"
+    networks: 
+      - redis-compose-network
+
+volumes:
+  cache:
+    driver: local
+    
+networks:
+  redis-compose-network:
+    driver: bridge

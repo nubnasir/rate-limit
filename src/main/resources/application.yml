@@ -1,0 +1,10 @@
+server:
+  error:
+    include-message: always
+
+spring:
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379

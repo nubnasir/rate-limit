@@ -1,0 +1,6 @@
+#building local docker image and tag it locally
+sudo docker build -t rate-limit:1.0 .
+sudo docker tag rate-limit:1.0 rate-limit:1.0
+
+#saclling up rate-limit to three instances
+sudo docker-compose -f redis-deployment.yaml up --scale rate-limit=3
